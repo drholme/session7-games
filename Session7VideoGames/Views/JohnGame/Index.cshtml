@@ -1,0 +1,18 @@
+﻿@model List<Session7VideoGames.Models.Game>
+
+@foreach(var game in Model)
+{
+    <li>@game.Title by @game.Developer.Name</li>
+}
+
+<form action="/johngame/analyze" method="get">
+    Title: <input type="text" name="someTitle" /><br />
+    ReleaseDate: <input type="datetime" name="ReleaseDate" /><br />
+    Genre: <input type="text" name="Genre" /><br />
+    Rating: <input type="text" name="Rating" /><br />
+    Developer: <select name="DeveloperID">
+        <option value="1">Someone</option>
+        <option value="2">Someone Else</option>
+    </select>
+    <input type="submit" />
+</form>

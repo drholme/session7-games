@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Session7VideoGames.Models
 {
@@ -10,26 +11,28 @@ namespace Session7VideoGames.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Genre { get; set; }
+        [Display(Name = "Release Date")]
+        [DisplayFormat(DataFormatString ="{0:MM/dd/yyyy}")]
         public DateTime ReleaseDate { get; set; }
         public string Rating { get; set; }
 
-        public List<Character> Characters { get; set; }
-        public List<Platform> Platforms { get; set; }
-        public Developer Developer { get; set; }
+        public virtual List<Character> Characters { get; set; }
+        public virtual List<Platform> Platforms { get; set; }
+        public virtual Developer Developer { get; set; }
     }
 
     public class Character {
         public int Id { get; set; }
         public string Name { get; set; }
         public bool Playable { get; set; }
-        public List<Game> Games { get; set; }
+        public virtual List<Game> Games { get; set; }
     }
 
     public class Developer {
         public int Id { get; set; }
         public string Name { get; set; }
         
-        public List<Game> Games { get; set; }
+        public virtual List<Game> Games { get; set; }
     }
 
     public class Platform {
@@ -51,7 +54,7 @@ namespace Session7VideoGames.Models
             }
         }
 
-        public List<Game> Games { get; set; }
+        public virtual List<Game> Games { get; set; }
     }
 
     public class GamesContext : DbContext
